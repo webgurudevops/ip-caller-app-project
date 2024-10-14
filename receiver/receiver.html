@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Receiver</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="header-list">
+      <h2>
+        <a href="#">Call <span class="spanned">Fusion</span></a>
+      </h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a class="header-button" href="#">Make A Call</a></li>
+      </ul>
+    </div>
+    <div class="heading">
+      <div class="header-text">
+        <h1>CallFusion</h1>
+        <p>Transforming Talk, One Call at a Time</p>
+      </div>
+    </div>
+    <div>
+      <div class="input-bar">
+        <input
+          placeholder="Enter username..."
+          type="text"
+          id="username-input"
+        />
+      </div>
+      <div class="buttons">
+        <button class="button2" onclick="joinCall()">Join Call</button>
+      </div>
+    </div>
+    <div id="video-call-div">
+      <video muted id="local-video" autoplay></video>
+      <video id="remote-video" autoplay></video>
+      <div class="call-action-div">
+        <button onclick="muteVideo()">Mute Video</button>
+        <button onclick="muteAudio()">Mute Audio</button>
+      </div>
+    </div>
+    <script src="./receiver.js"></script>
+  </body>
+</html>
