@@ -2,17 +2,21 @@
 <html>
   <head>
     <title>Sender</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="header-list">
-      <h2><a href="/sender/index.html">Call <span class="spanned">Fusion</span></a></h2>
+      <h2>
+        <a href="index.html">Call <span class="spanned">Fusion</span></a>
+      </h2>
       <ul>
-        <li><a href="/sender/index.html">Home</a></li>
-        <li><a class="header-button" href="/sender/index.html">Make A Call</a></li>
-        <li><a class="header-button" href="/receiver/index.html">Receive A Call</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="header-button" href="index.html">Make A Call</a></li>
+        <li>
+          <a class="header-button" href="receiver.html">Receive A Call</a>
+        </li>
       </ul>
-    </div> 
+    </div>
     <div class="heading">
       <div class="header-text">
         <h1>CallFusion</h1>
@@ -20,11 +24,7 @@
       </div>
     </div>
     <div class="input-bar">
-      <input
-        placeholder="Enter username..."
-        type="text"
-        id="username-input"
-        >
+      <input placeholder="Enter username..." type="text" id="username-input" />
     </div>
     <div class="buttons">
       <button class="button1" onclick="sendUsername()">Send</button>
@@ -38,6 +38,6 @@
         <button onclick="muteAudio()">Mute Audio</button>
       </div>
     </div>
-    <script src="./sender.js"></script>
+    <script src="sender.js"></script>
   </body>
 </html>
