@@ -6,11 +6,14 @@ const port = process.env.PORT || 3000; // Uses the PORT environment variable or 
 const apiKey = process.env.API_KEY;     // Accesses the API key (if applicable)
 
 // Create an HTTP server
-const server = http.createServer((req, res) => {});
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('WebSocket server is running.\n');
+});
 
-// Start the HTTP server on port 3000
-server.listen(3000, () => {
-    console.log('Listening on port 3000...');
+// Start the HTTP server on the defined port
+server.listen(port, () => {
+    console.log(`Listening on port ${port}...`);
 });
 
 // Create a WebSocket server
@@ -21,14 +24,23 @@ let users = [];
 // Handle WebSocket requests
 webSocket.on('connection', (connection) => {
     connection.on('message', (message) => {
-        const data = JSON.parse(message);
+        let data;
+        try {
+            data = JSON.parse(message);
+        } catch (error) {
+            console.error('Invalid JSON:', message);
+            return; // Exit if the message is not valid JSON
+        }
 
         const user = findUser(data.username);
 
         switch (data.type) {
             case 'store_user':
-                // If user already exists, return early
-                if (user != null) return;
+                if (user != null) {
+                    user.conn = connection; // Update the connection
+                    console.log(`User reconnected: ${user.username}`);
+                    return;
+                }
 
                 const newUser = {
                     conn: connection,
@@ -74,9 +86,11 @@ webSocket.on('connection', (connection) => {
 
     // Handle connection close
     connection.on('close', () => {
-        // Remove user from the users array
-        users = users.filter((user) => user.conn !== connection);
-        console.log('User disconnected.');
+        const userIndex = users.findIndex((u) => u.conn === connection);
+        if (userIndex !== -1) {
+            console.log(`User disconnected: ${users[userIndex].username}`);
+            users.splice(userIndex, 1);
+        }
     });
 });
 
