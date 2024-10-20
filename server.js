@@ -5,7 +5,6 @@ const http = require('http');
 const port = process.env.PORT || 3000; // Uses the PORT environment variable or defaults to 3000
 const apiKey = process.env.API_KEY;     // Accesses the API key (if applicable)
 
-
 // Create an HTTP server
 const server = http.createServer((req, res) => {});
 
@@ -31,7 +30,6 @@ webSocket.on('connection', (connection) => {
                 // If user already exists, return early
                 if (user != null) return;
 
-                // Add new user to the users array
                 const newUser = {
                     conn: connection,
                     username: data.username,
