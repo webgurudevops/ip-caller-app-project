@@ -1,6 +1,11 @@
 const WebSocketServer = require('ws').Server; // Correctly require the 'ws' library
 const http = require('http');
 
+// Access environment variables for port and API key
+const port = process.env.PORT || 3000; // Uses the PORT environment variable or defaults to 3000
+const apiKey = process.env.API_KEY;     // Accesses the API key (if applicable)
+
+
 // Create an HTTP server
 const server = http.createServer((req, res) => {});
 
